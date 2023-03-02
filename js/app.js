@@ -1,11 +1,17 @@
+const loader1 = document.getElementById("loader1");
+const loader2 = document.getElementById("loader2");
+
+// Load first 6 data
 const load6Data = () => {
+  // loader1
+  loader1.classList.remove("hidden");
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayData(data.data.tools));
+    .then((data) => display6Data(data.data.tools));
 };
 
-const displayData = (toolsData) => {
+const display6Data = (toolsData) => {
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
   );
@@ -66,11 +72,17 @@ const displayData = (toolsData) => {
       toolsInfoCardContainer.appendChild(toolCard);
     }
   }
+  //   loader1
+  loader1.classList.add("hidden");
 };
 
 load6Data();
 
+
+// Load all data when click in see more btn
 const loadAllData = () => {
+  // loader2
+  loader2.classList.remove("hidden");
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   fetch(url)
     .then((res) => res.json())
@@ -80,7 +92,7 @@ const displayAllData = (toolsData) => {
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
   );
-  toolsInfoCardContainer.innerText = '';
+  toolsInfoCardContainer.innerText = "";
   toolsData.forEach((eachToolData) => {
     console.log(eachToolData.features[0]);
     const toolCard = document.createElement("div");
@@ -135,6 +147,8 @@ const displayAllData = (toolsData) => {
               </div>
           `;
     toolsInfoCardContainer.appendChild(toolCard);
-});
-document.getElementById('see-more-btn').classList.add('hidden') ;
+  });
+  document.getElementById("see-more-btn").classList.add("hidden");
+  //   loader2
+  loader2.classList.add("hidden");
 };
