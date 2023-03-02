@@ -6,7 +6,6 @@ const loadData = () => {
 };
 
 const displayData = (toolsData) => {
-  console.log(toolsData);
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
   );
@@ -18,7 +17,7 @@ const displayData = (toolsData) => {
         <!-- Each tool card -->
             <!-- Tool Image -->
             <figure>
-                <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg"
+                <img src="${eachToolData.image}"
                     alt="chatgpt_assistente" />
             </figure>
             <div class="card-body">
