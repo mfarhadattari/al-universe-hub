@@ -48,7 +48,7 @@ const displayData = (toolsData) => {
                     </div>
                     <!-- tool details btn -->
                     <div class="card-actions justify-end">
-                        <button class="text-red-400 text-2xl">
+                        <button class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full">
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
