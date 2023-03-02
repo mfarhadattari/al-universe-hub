@@ -17,7 +17,6 @@ const display6Data = (toolsData) => {
   );
   for (const eachToolData of toolsData) {
     if (toolsData.indexOf(eachToolData) < 6) {
-      console.log(eachToolData.features[0]);
       const toolCard = document.createElement("div");
       toolCard.classList.add(
         "card",
@@ -94,7 +93,6 @@ const displayAllData = (toolsData) => {
   );
   toolsInfoCardContainer.innerText = "";
   toolsData.forEach((eachToolData) => {
-    console.log(eachToolData.features[0]);
     const toolCard = document.createElement("div");
     toolCard.classList.add(
       "card",
