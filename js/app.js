@@ -10,15 +10,15 @@ const displayData = (toolsData) => {
     "tools-information-container"
   );
   toolsData.forEach((eachToolData) => {
-    console.log(eachToolData);
+    console.log(eachToolData.features[0]);
     const toolCard = document.createElement("div");
-    toolCard.classList.add("card", "w-96", "bg-base-100", "shadow-xl");
+    toolCard.classList.add("card", "w-96", "bg-base-100", "shadow-xl", 'p-5', 'rounded-3xl');
     toolCard.innerHTML = `
         <!-- Each tool card -->
             <!-- Tool Image -->
             <figure>
                 <img src="${eachToolData.image}"
-                    alt="chatgpt_assistente" />
+                    alt="${eachToolData.name}" style = "height: 200px"  />
             </figure>
             <div class="card-body">
 
@@ -26,9 +26,9 @@ const displayData = (toolsData) => {
                 <div>
                     <h1 class="font-semibold text-xl">Features</h1>
                     <ol class="list-decimal pl-5">
-                        <li>Natural language processing</li>
-                        <li>Contextual understanding</li>
-                        <li>Text generation</li>
+                        <li>${eachToolData.features[0]}</li>
+                        <li>${eachToolData.features[1]}</li>
+                        <li>${eachToolData.features[2]}</li>
                     </ol>
                 </div>
                 <hr>
@@ -37,13 +37,13 @@ const displayData = (toolsData) => {
                 <div class="flex justify-between items-center">
                     <div>
                         <!-- tool title -->
-                        <h2 class="card-title">
-                            ChartGPT
+                        <h2 class="card-title mb-2">
+                            ${eachToolData.name}
                         </h2>
                         <!-- tool published date -->
                         <h4>
                             <i class="fa-solid fa-calendar-days"></i>
-                            <span>11/01/2022</span>
+                            <span>${eachToolData.published_in}</span>
                         </h4>
                     </div>
                     <!-- tool details btn -->
