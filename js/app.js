@@ -1,16 +1,17 @@
-const loader1 = document.getElementById("loader1");
-const loader2 = document.getElementById("loader2");
-
+/*-------------------------------------------------
+    Default 6 Tools Data Card Section
+----------------------------------------------------*/
 // Load first 6 data
 const load6Data = () => {
   // loader1
-  loader1.classList.remove("hidden");
+  document.getElementById("loader1").classList.remove("hidden");
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   fetch(url)
     .then((res) => res.json())
     .then((data) => display6Data(data.data.tools));
 };
 
+// Display 6 card of tools
 const display6Data = (toolsData) => {
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
@@ -35,14 +36,14 @@ const display6Data = (toolsData) => {
             </figure>
             <div class="card-body">
 
-                <!-- tool features -->
+                <!--Six Card tool features Section -->
                 <div>
                     <h1 class="font-semibold text-xl">Features</h1>
                     <ol class="list-decimal pl-5">
-                        <li>${eachToolData.features[0]}</li>
-                        <li>${eachToolData.features[1]}</li>
-                        <li>${eachToolData.features[2]}</li>
-                    </ol>
+                          <li>${eachToolData.features[0]}</li>
+                          <li>${eachToolData.features[1]}</li>
+                          <li>${eachToolData.features[2]}</li>
+                      </ol>
                 </div>
                 <hr>
 
@@ -72,15 +73,19 @@ const display6Data = (toolsData) => {
     }
   }
   //   loader1
-  loader1.classList.add("hidden");
+  document.getElementById("loader1").classList.add("hidden");
 };
 
 load6Data();
 
+/* -------------------------------------------------------------------------
+                              See More Data Section
+------------------------------------------------------------------------------*/
+
 // Load all data when click in see more btn
 const loadAllData = () => {
   // loader2
-  loader2.classList.remove("hidden");
+  document.getElementById("loader2").classList.remove("hidden");
   const url = "https://openapi.programming-hero.com/api/ai/tools";
   fetch(url)
     .then((res) => res.json())
@@ -110,7 +115,7 @@ const displayAllData = (toolsData) => {
               </figure>
               <div class="card-body">
   
-                  <!-- tool features -->
+                  <!-- All card tool features section-->
                   <div>
                       <h1 class="font-semibold text-xl">Features</h1>
                       <ol class="list-decimal pl-5">
@@ -145,9 +150,14 @@ const displayAllData = (toolsData) => {
   });
   document.getElementById("see-more-btn").classList.add("hidden");
   //   loader2
-  loader2.classList.add("hidden");
+  document.getElementById("loader2").classList.add("hidden");
 };
 
+/* ------------------------------------------------------------------------------------
+                              Details Modal Section
+--------------------------------------------------------------------------------------*/
+
+// details loader
 const loadDetails = (id) => {
   document.getElementById("modal-loader").classList.remove("hidden");
   url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
@@ -156,17 +166,19 @@ const loadDetails = (id) => {
     .then((data) => displayDetails(data.data));
 };
 
-// details btn
+// details display
 const displayDetails = (toolData) => {
   const cardBody = document.getElementById("card-body");
   cardBody.innerHTML = "";
   cardBody.innerHTML = `
-  <div class="flex  flex-col lg:flex-row justify-between gap-5">
-  <div class="card lg:w-1/2 bg-red-50 shadow-xl p-4 border-2 border-red-300">
+  <div class="flex  flex-col lg:flex-row justify-between gap-5 p-1">
+  <div class="card lg:w-1/2 bg-red-50 shadow-xl p-2 border-2 border-red-300">
       <h1 class="text-2xl font-medium">
           ${toolData.description}
       </h1>
       <div class="card-body p-1">
+
+      <!--Tool Pricing Section -->
           <div class="flex flex-col md:flex-row gap-4 text-lg text-center my-3">
               <div class="bg-white p-5 text-green-500 rounded-xl">
                ${
@@ -191,39 +203,27 @@ const displayDetails = (toolData) => {
               </div>
           </div>
           <div class="flex gap-5 items-center justify-between">
+
+          <!--Details Feature section-->
               <div class="">
                   <h2 class="text-xl font-semibold">Features</h2>
-                  <ul class="list-disc pl-5">
-                      <li>${toolData.features[1].feature_name}</li>
-                      <li>${toolData.features[2].feature_name}</li>
-                      <li>${toolData.features[3].feature_name}</li>
+                  <ul id="details-features-list" class="list-disc pl-5">
+                      
                   </ul>
               </div>
+
+              <!--Details Integrations section -->
               <div>
                   <h2 class="text-xl font-semibold">Integrations</h2>
-                  <ul class="list-disc pl-5">
-                      <li>${
-                        Array.isArray(toolData.integrations)
-                          ? toolData.integrations[0]
-                          : "No Data Found"
-                      }</li>
-                      <li>${
-                        Array.isArray(toolData.integrations)
-                          ? toolData.integrations[1]
-                          : "No Data Found"
-                      }</li>
-                      <li>${
-                        Array.isArray(toolData.integrations)
-                          ? toolData.integrations[2]
-                          : "No Data Found"
-                      }</li>
+                  <ul id="integrations-list" class="list-disc pl-5">
+                      
                   </ul>
               </div>
           </div>
       </div>
   </div>
-  <div class="card lg:w-1/2 bg-base-100 shadow-xl">
 
+  <div class="card lg:w-1/2 bg-base-100 shadow-xl">
       <div class="w-full">
           <span class=" badge badge-secondary absolute right-5 lg:right-24 top-1">
               ${
@@ -239,6 +239,7 @@ const displayDetails = (toolData) => {
           </figure>
       </div>
 
+      <!-- Title and Description section -->
       <div class="card-body items-center text-center">
           <h2 class="card-title">${
             Array.isArray(toolData.input_output_examples)
@@ -254,5 +255,29 @@ const displayDetails = (toolData) => {
   </div>
 </div>
   `;
+
+  // integrationsList section
+  const integrationsList = document.getElementById("integrations-list");
+  const integrations = toolData.integrations;
+  if (Array.isArray(integrations)) {
+    integrations.forEach((integrationsItem) => {
+      const integrationsLi = document.createElement("li");
+      integrationsLi.innerText = `${integrationsItem}`;
+      integrationsList.appendChild(integrationsLi);
+    });
+  } else {
+    integrationsList.innerText = "No Data Found";
+  }
+
+  // Details section features section
+  const featuresList = document.getElementById("details-features-list");
+  const features = toolData.features;
+  for (const key in features) {
+    const featuresLi = document.createElement("li");
+    featuresLi.innerText = `${features[key].feature_name}`;
+    featuresList.appendChild(featuresLi);
+  }
+
+  // modal-loader hide
   document.getElementById("modal-loader").classList.add("hidden");
 };
