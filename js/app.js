@@ -16,8 +16,23 @@ const display6Data = (toolsData) => {
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
   );
+  const seeMoreBtn = document.createElement('div') ;
+  seeMoreBtn.classList.add('mt-10')
+  seeMoreBtn.innerHTML = `
+  <!-- more btn -->
+                <button onclick="loadAllData()" id="see-more-btn"
+                    class="btn bg-red-400 hover:bg-sky-500 capitalize border-none text-white w-36">See More</button>
+  `
   for (const eachToolData of toolsData) {
     if (toolsData.indexOf(eachToolData) < 6) {
+
+      // Date Formatting
+      const date = new Date(eachToolData.published_in);
+      const year = '' + date.getFullYear();
+      const mouth = (('' + (date.getMonth() + 1)).length == 2) ? ('' + (date.getMonth() + 1)) : ('0' + (date.getMonth() + 1));
+      const day = (('' + date.getDate()).length == 2) ? ('' + date.getDate()) : ('0' + date.getDate());
+
+
       const toolCard = document.createElement("div");
       toolCard.classList.add(
         "card",
@@ -55,9 +70,9 @@ const display6Data = (toolsData) => {
                             ${eachToolData.name}
                         </h2>
                         <!-- tool published date -->
-                        <h4>
+                        <h4 class = "flex items-center gap-2" >
                             <i class="fa-solid fa-calendar-days"></i>
-                            <span>${eachToolData.published_in}</span>
+                            <span class = "published-date"> ${mouth}/${day}/${year}</span>
                         </h4>
                     </div>
                     <!-- tool details btn -->
@@ -71,6 +86,7 @@ const display6Data = (toolsData) => {
         `;
       toolsInfoCardContainer.appendChild(toolCard);
     }
+    toolsInfoCardContainer.parentNode.appendChild(seeMoreBtn);
   }
   //   loader1
   document.getElementById("loader1").classList.add("hidden");
@@ -97,6 +113,14 @@ const displayAllData = (toolsData) => {
   );
   toolsInfoCardContainer.innerText = "";
   toolsData.forEach((eachToolData) => {
+
+    // Date Formatting
+    const date = new Date(eachToolData.published_in);
+    const year = '' + date.getFullYear();
+    const mouth = (('' + (date.getMonth() + 1)).length == 2) ? ('' + (date.getMonth() + 1)) : ('0' + (date.getMonth() + 1));
+    const day = (('' + date.getDate()).length == 2) ? ('' + date.getDate()) : ('0' + date.getDate());
+
+    
     const toolCard = document.createElement("div");
     toolCard.classList.add(
       "card",
@@ -134,9 +158,9 @@ const displayAllData = (toolsData) => {
                               ${eachToolData.name}
                           </h2>
                           <!-- tool published date -->
-                          <h4>
+                          <h4 class = "flex items-center gap-2" >
                               <i class="fa-solid fa-calendar-days"></i>
-                              <span>${eachToolData.published_in}</span>
+                              <span class = "published-date"> ${mouth}/${day}/${year}</span>
                           </h4>
                       </div>
                       <div class="card-actions justify-end">
@@ -268,7 +292,7 @@ const displayDetails = (toolData) => {
   } else {
     integrationsList.innerText = "No Data Found";
   }
-
+  
   // Details section features section
   const featuresList = document.getElementById("details-features-list");
   const features = toolData.features;
@@ -281,3 +305,57 @@ const displayDetails = (toolData) => {
   // modal-loader hide
   document.getElementById("modal-loader").classList.add("hidden");
 };
+
+
+// sort by date section
+const convertDate = (date) => {
+  let dateArray = date.split("/");
+  dateArray = dateArray.reverse();
+  let dateYMD = '' ;
+  dateArray.forEach(dateElement =>{
+    dateYMD = dateYMD + dateElement ;
+  })
+  return dateYMD ;
+}
+
+const sortByDate = (direction) => {
+  // card container
+  const cardContainer = document.getElementById('tools-information-container');
+  
+  // cards list
+  const allDateList = document.getElementsByClassName('published-date') ;
+  const dateList = [].slice.call(allDateList);
+
+  if(direction === 'descending'){  
+    dateList.sort((a , b) =>{
+      const def = convertDate(b.innerText) - convertDate(a.innerText) ;
+      return def;
+      });  
+  }
+  else{
+    dateList.sort((a , b) =>{
+      const def = convertDate(a.innerText) - convertDate(b.innerText) ;
+      return def;
+      }); 
+  }
+    dateList.forEach( dateContainer => {
+    const card =dateContainer.parentNode.parentNode.parentNode.parentNode.parentNode
+    cardContainer.appendChild(card);
+  });
+}
+
+
+document
+  .getElementById("sort-by-date-btn")
+  .addEventListener("click", function () {
+    const sortBtn =  document.getElementById('sort-by-date-btn')
+    const sortBtnText = sortBtn.innerText ;
+    if(sortBtnText == 'Sort By Date (Descending)'){
+      sortBtn.innerText = 'Sort By Date (Ascending)'
+      sortByDate('descending'); 
+    }
+    else{
+      sortBtn.innerText = 'Sort By Date (Descending)'
+      sortByDate('ascending'); 
+    }
+  });
