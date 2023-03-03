@@ -61,9 +61,9 @@ const display6Data = (toolsData) => {
                     </div>
                     <!-- tool details btn -->
                     <div class="card-actions justify-end">
-                        <button class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full">
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
+                      
+                        <!-- The details btn -->
+            <label for="my-modal-3" onclick= "loadDetails()" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,6 @@ const display6Data = (toolsData) => {
 };
 
 load6Data();
-
 
 // Load all data when click in see more btn
 const loadAllData = () => {
@@ -137,7 +136,7 @@ const displayAllData = (toolsData) => {
                       </div>
                       <!-- tool details btn -->
                       <div class="card-actions justify-end">
-                          <button class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full">
+                          <button onclick="loadDetails()" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full">
                               <i class="fa-solid fa-arrow-right"></i>
                           </button>
                       </div>
@@ -149,4 +148,69 @@ const displayAllData = (toolsData) => {
   document.getElementById("see-more-btn").classList.add("hidden");
   //   loader2
   loader2.classList.add("hidden");
+};
+
+// details btn
+const loadDetails = () => {
+  const modalContainer = document.getElementById("modal-section");
+  modalContainer.innerHTML = `
+  <!-- Details Modal -->
+  <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+  <div class="modal">
+      <label for="my-modal-3" class="btn btn-circle bg-red-500 absolute z-20 right-20 top-7">✕</label>
+      <div class="modal-box w-11/12 max-w-5xl z-0">
+          <div class="flex justify-between gap-5">
+              <div class="card w-1/2 bg-red-50 shadow-xl p-4 border-2 border-red-300">
+                  <h1 class="text-2xl font-medium">
+                      ChatGPT is an AI-powered chatbot platform that uses OpenAI's GPT technology to
+                      simulate
+                      human conversation.
+                  </h1>
+                  <div class="card-body p-1">
+                      <div class="flex gap-4 text-lg text-center my-3">
+                          <div class="bg-white p-5 text-green-500 rounded-xl">$10/month Basic</div>
+                          <div class="bg-white p-5 text-orange-500 rounded-xl">$50/month Pro</div>
+                          <div class="bg-white p-5 text-pink-500 rounded-xl">Contact us Enterprise</div>
+                      </div>
+                      <div class="flex gap-5 items-center justify-between">
+                          <div class="">
+                              <h2 class="text-xl font-semibold">Features</h2>
+                              <ul class="list-disc pl-5">
+                                  <li>Customizable responses</li>
+                                  <li>Multilingual support</li>
+                                  <li>Seamless integration</li>
+                              </ul>
+                          </div>
+                          <div>
+                              <h2 class="text-xl font-semibold">Integrations</h2>
+                              <ul class="list-disc pl-5">
+                                  <li>FB Messenger</li>
+                                  <li>Slack</li>
+                                  <li>Telegram</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card w-1/2 bg-base-100 shadow-xl">
+
+                  <div class="w-full">
+                      <span class=" badge badge-secondary absolute right-1 top-1">
+                          94% accuracy
+                      </span>
+                      <figure class="">
+                          <img src="https://img.olhardigital.com.br/wp-content/uploads/2023/01/chatgpt_assistente.jpg"
+                              alt="Shoes" class="rounded-xl w-full" />
+                      </figure>
+                  </div>
+
+                  <div class="card-body items-center text-center">
+                      <h2 class="card-title">Hi, how are you doing today?</h2>
+                      <p>I'm doing well, thank you for asking. How can I assist you today?</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  `;
 };
