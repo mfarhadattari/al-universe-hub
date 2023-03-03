@@ -92,7 +92,7 @@ const display6Data = (toolsData) => {
   document.getElementById("loader1").classList.add("hidden");
 };
 
-load6Data();
+
 
 /* -------------------------------------------------------------------------
                               See More Data Section
@@ -120,7 +120,7 @@ const displayAllData = (toolsData) => {
     const mouth = (('' + (date.getMonth() + 1)).length == 2) ? ('' + (date.getMonth() + 1)) : ('0' + (date.getMonth() + 1));
     const day = (('' + date.getDate()).length == 2) ? ('' + date.getDate()) : ('0' + date.getDate());
 
-    
+
     const toolCard = document.createElement("div");
     toolCard.classList.add(
       "card",
@@ -307,7 +307,9 @@ const displayDetails = (toolData) => {
 };
 
 
-// sort by date section
+/* ------------------------------------------------------------------------------------
+                              Sort by date section
+--------------------------------------------------------------------------------------*/
 const convertDate = (date) => {
   let dateArray = date.split("/");
   dateArray = dateArray.reverse();
@@ -345,9 +347,7 @@ const sortByDate = (direction) => {
 }
 
 
-document
-  .getElementById("sort-by-date-btn")
-  .addEventListener("click", function () {
+document.getElementById("sort-by-date-btn").addEventListener("click", function () {
     const sortBtn =  document.getElementById('sort-by-date-btn')
     const sortBtnText = sortBtn.innerText ;
     if(sortBtnText == 'Sort By Date (Descending)'){
