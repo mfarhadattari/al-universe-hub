@@ -63,7 +63,7 @@ const display6Data = (toolsData) => {
                     <div class="card-actions justify-end">
                       
                         <!-- The details btn -->
-            <label for="my-modal-3" onclick= "loadDetails()" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
+            <label for="my-modal-3" onclick= "loadDetails('${eachToolData.id}')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
                     </div>
                 </div>
             </div>
@@ -134,11 +134,9 @@ const displayAllData = (toolsData) => {
                               <span>${eachToolData.published_in}</span>
                           </h4>
                       </div>
-                      <!-- tool details btn -->
                       <div class="card-actions justify-end">
-                          <button onclick="loadDetails()" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full">
-                              <i class="fa-solid fa-arrow-right"></i>
-                          </button>
+                      <!-- tool details btn -->
+                      <label for="my-modal-3" onclick= "loadDetails('${eachToolData.id}')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
                       </div>
                   </div>
               </div>
@@ -150,10 +148,19 @@ const displayAllData = (toolsData) => {
   loader2.classList.add("hidden");
 };
 
+const loadDetails = (id) => {
+  url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayDetails(data.data));
+};
+
 // details btn
-const loadDetails = () => {
-  const modalContainer = document.getElementById("modal-section");
-  modalContainer.innerHTML = `
+const displayDetails = (toolData) => {
+  console.log(toolData);
+  const modalContainer = document.getElementById("modal-container");
+  const modalDiv = document.createElement("div");
+  modalDiv.innerHTML = `
   <!-- Details Modal -->
   <input type="checkbox" id="my-modal-3" class="modal-toggle" />
   <div class="modal">
@@ -213,4 +220,5 @@ const loadDetails = () => {
       </div>
   </div>
   `;
+  modalContainer.appendChild(modalDiv);
 };
