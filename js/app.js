@@ -158,7 +158,7 @@ const loadDetails = (id) => {
 
 // details btn
 const displayDetails = (toolData) => {
-  console.log(Array.isArray(toolData.pricing) ? toolData.pricing[0] : 'Not Pricing Data Found');
+  console.log(toolData.features[1].feature_name);
   const cardBody = document.getElementById("card-body");
   cardBody.innerHTML = "";
   cardBody.innerHTML = `
@@ -183,9 +183,9 @@ const displayDetails = (toolData) => {
               <div class="">
                   <h2 class="text-xl font-semibold">Features</h2>
                   <ul class="list-disc pl-5">
-                      <li>Customizable responses</li>
-                      <li>Multilingual support</li>
-                      <li>Seamless integration</li>
+                      <li>${toolData.features[1].feature_name}</li>
+                      <li>${toolData.features[2].feature_name}</li>
+                      <li>${toolData.features[3].feature_name}</li>
                   </ul>
               </div>
               <div>
