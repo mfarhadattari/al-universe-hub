@@ -161,13 +161,13 @@ const displayDetails = (toolData) => {
   const cardBody = document.getElementById("card-body");
   cardBody.innerHTML = "";
   cardBody.innerHTML = `
-  <div class="flex justify-between gap-5">
-  <div class="card w-1/2 bg-red-50 shadow-xl p-4 border-2 border-red-300">
+  <div class="flex  flex-col lg:flex-row justify-between gap-5">
+  <div class="card lg:w-1/2 bg-red-50 shadow-xl p-4 border-2 border-red-300">
       <h1 class="text-2xl font-medium">
           ${toolData.description}
       </h1>
       <div class="card-body p-1">
-          <div class="flex gap-4 text-lg text-center my-3">
+          <div class="flex flex-col md:flex-row gap-4 text-lg text-center my-3">
               <div class="bg-white p-5 text-green-500 rounded-xl">
                ${
                  Array.isArray(toolData.pricing)
@@ -222,10 +222,10 @@ const displayDetails = (toolData) => {
           </div>
       </div>
   </div>
-  <div class="card w-1/2 bg-base-100 shadow-xl">
+  <div class="card lg:w-1/2 bg-base-100 shadow-xl">
 
       <div class="w-full">
-          <span class=" badge badge-secondary absolute right-24 top-1">
+          <span class=" badge badge-secondary absolute right-5 lg:right-24 top-1">
               ${
                 typeof toolData.accuracy.score == "number"
                   ? `${toolData.accuracy.score * 100}% accuracy`
