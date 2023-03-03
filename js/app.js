@@ -158,7 +158,6 @@ const loadDetails = (id) => {
 
 // details btn
 const displayDetails = (toolData) => {
-  console.log(toolData.features[1].feature_name);
   const cardBody = document.getElementById("card-body");
   cardBody.innerHTML = "";
   cardBody.innerHTML = `
@@ -170,13 +169,25 @@ const displayDetails = (toolData) => {
       <div class="card-body p-1">
           <div class="flex gap-4 text-lg text-center my-3">
               <div class="bg-white p-5 text-green-500 rounded-xl">
-               ${Array.isArray(toolData.pricing) ? `${toolData.pricing[0].price} ${toolData.pricing[0].plan}` : 'Not Pricing Data Found'}
+               ${
+                 Array.isArray(toolData.pricing)
+                   ? `${toolData.pricing[0].price} ${toolData.pricing[0].plan}`
+                   : "Not Pricing Data Found"
+               }
               </div>
               <div class="bg-white p-5 text-orange-500 rounded-xl">
-              ${Array.isArray(toolData.pricing) ? `${toolData.pricing[1].price} ${toolData.pricing[1].plan}` : 'Not Pricing Data Found'}
+              ${
+                Array.isArray(toolData.pricing)
+                  ? `${toolData.pricing[1].price} ${toolData.pricing[1].plan}`
+                  : "Not Pricing Data Found"
+              }
               </div>
               <div class="bg-white p-5 text-pink-500 rounded-xl">
-              ${Array.isArray(toolData.pricing) ? `${toolData.pricing[2].price} ${toolData.pricing[2].plan}` : 'Not Pricing Data Found'}
+              ${
+                Array.isArray(toolData.pricing)
+                  ? `${toolData.pricing[2].price} ${toolData.pricing[2].plan}`
+                  : "Not Pricing Data Found"
+              }
               </div>
           </div>
           <div class="flex gap-5 items-center justify-between">
@@ -191,9 +202,21 @@ const displayDetails = (toolData) => {
               <div>
                   <h2 class="text-xl font-semibold">Integrations</h2>
                   <ul class="list-disc pl-5">
-                      <li>FB Messenger</li>
-                      <li>Slack</li>
-                      <li>Telegram</li>
+                      <li>${
+                        Array.isArray(toolData.integrations)
+                          ? toolData.integrations[0]
+                          : "No Data Found"
+                      }</li>
+                      <li>${
+                        Array.isArray(toolData.integrations)
+                          ? toolData.integrations[1]
+                          : "No Data Found"
+                      }</li>
+                      <li>${
+                        Array.isArray(toolData.integrations)
+                          ? toolData.integrations[2]
+                          : "No Data Found"
+                      }</li>
                   </ul>
               </div>
           </div>
@@ -203,16 +226,30 @@ const displayDetails = (toolData) => {
 
       <div class="w-full">
           <span class=" badge badge-secondary absolute right-24 top-1">
-              ${(typeof(toolData.accuracy.score) == 'number') ? `${toolData.accuracy.score * 100}% accuracy` : 'Accuracy Not Found'}
+              ${
+                typeof toolData.accuracy.score == "number"
+                  ? `${toolData.accuracy.score * 100}% accuracy`
+                  : "Accuracy Not Found"
+              }
           </span>
           <figure class="">
-              <img src="${toolData.image_link[0]}" alt="${toolData.tool_name}" class="rounded-xl w-72  h-40" />
+              <img src="${toolData.image_link[0]}" alt="${
+    toolData.tool_name
+  }" class="rounded-xl w-72  h-40" />
           </figure>
       </div>
 
       <div class="card-body items-center text-center">
-          <h2 class="card-title">${Array.isArray(toolData.input_output_examples) ? toolData.input_output_examples[0].input : 'No Data Found' }</h2>
-          <p>${Array.isArray(toolData.input_output_examples) ? toolData.input_output_examples[0].output : 'No Data Found' }</p>
+          <h2 class="card-title">${
+            Array.isArray(toolData.input_output_examples)
+              ? toolData.input_output_examples[0].input
+              : "No Data Found"
+          }</h2>
+          <p>${
+            Array.isArray(toolData.input_output_examples)
+              ? toolData.input_output_examples[0].output
+              : "No Data Found"
+          }</p>
       </div>
   </div>
 </div>
