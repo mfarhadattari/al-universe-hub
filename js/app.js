@@ -25,7 +25,7 @@ const display6Data = (toolsData) => {
   `
   for (const eachToolData of toolsData) {
     if (toolsData.indexOf(eachToolData) < 6) {
-
+      // console.log(eachToolData.id)
       // Date Formatting
       const date = new Date(eachToolData.published_in);
       const year = '' + date.getFullYear();
@@ -58,7 +58,7 @@ const display6Data = (toolsData) => {
                           <li>${eachToolData.features[0]}</li>
                           <li>${eachToolData.features[1]}</li>
                           <li>${eachToolData.features[2]}</li>
-                      </ol>
+                    </ol>
                 </div>
                 <hr>
 
@@ -84,10 +84,10 @@ const display6Data = (toolsData) => {
                 </div>
             </div>
         `;
-      toolsInfoCardContainer.appendChild(toolCard);
+        toolsInfoCardContainer.appendChild(toolCard);
+      }
+      toolsInfoCardContainer.parentNode.appendChild(seeMoreBtn);
     }
-    toolsInfoCardContainer.parentNode.appendChild(seeMoreBtn);
-  }
   //   loader1
   document.getElementById("loader1").classList.add("hidden");
 };
@@ -113,6 +113,7 @@ const displayAllData = (toolsData) => {
   );
   toolsInfoCardContainer.innerText = "";
   toolsData.forEach((eachToolData) => {
+    
 
     // Date Formatting
     const date = new Date(eachToolData.published_in);
@@ -249,28 +250,28 @@ const displayDetails = (toolData) => {
 
   <div class="card lg:w-1/2 bg-base-100 shadow-xl">
       <div class="w-full">
-          <span class=" badge badge-secondary absolute right-5 lg:right-24 top-1">
+          <span id="accuracy" class=" badge badge-secondary absolute right-5 md:right-52 lg:right-28 top-7 z-10">
               ${
                 typeof toolData.accuracy.score == "number"
                   ? `${toolData.accuracy.score * 100}% accuracy`
                   : "Accuracy Not Found"
               }
           </span>
-          <figure class="">
+          <figure class="relative right-2 lg:right-4 top-5 z-0">
               <img src="${toolData.image_link[0]}" alt="${
     toolData.tool_name
-  }" class="rounded-xl w-72  h-40" />
+  }" class="rounded-xl w-80  h-44" />
           </figure>
       </div>
 
       <!-- Title and Description section -->
       <div class="card-body items-center text-center">
-          <h2 class="card-title">${
+          <h2 id="question" class="card-title">${
             Array.isArray(toolData.input_output_examples)
               ? toolData.input_output_examples[0].input
               : "No Data Found"
           }</h2>
-          <p>${
+          <p id="answer">${
             Array.isArray(toolData.input_output_examples)
               ? toolData.input_output_examples[0].output
               : "No Data Found"
@@ -301,6 +302,27 @@ const displayDetails = (toolData) => {
     featuresLi.innerText = `${features[key].feature_name}`;
     featuresList.appendChild(featuresLi);
   }
+
+
+  // accuracyData 
+  const accuracyDataCon = document.getElementById('accuracy') ;
+  if(accuracyDataCon.innerText === 'Accuracy Not Found'){
+    accuracyDataCon.classList.add('hidden') ;
+  }
+  else{
+    accuracyDataCon.classList.remove('hidden') ;
+  }
+
+  // 
+  const questionCon = document.getElementById('question') ;
+  const answerCon = document.getElementById('answer') ;
+  if (questionCon.innerText === 'No Data Found' && answerCon.innerText === 'No Data Found'){
+    answerCon.classList.add('hidden') ;
+  }
+  else{
+    questionCon.classList.remove('hidden') ;
+  }
+  
 
   // modal-loader hide
   document.getElementById("modal-loader").classList.add("hidden");
