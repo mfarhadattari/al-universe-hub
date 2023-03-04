@@ -25,7 +25,8 @@ const display6Data = (toolsData) => {
   `
   for (const eachToolData of toolsData) {
     if (toolsData.indexOf(eachToolData) < 6) {
-      // console.log(eachToolData.id)
+      // console.log(eachToolData.features)
+
       // Date Formatting
       const date = new Date(eachToolData.published_in);
       const year = '' + date.getFullYear();
@@ -55,9 +56,11 @@ const display6Data = (toolsData) => {
                 <div>
                     <h1 class="font-semibold text-xl">Features</h1>
                     <ol class="list-decimal pl-5">
-                          <li>${eachToolData.features[0]}</li>
-                          <li>${eachToolData.features[1]}</li>
-                          <li>${eachToolData.features[2]}</li>
+                    ${eachToolData.features[0] ? `<li>${eachToolData.features[0]}</li>` :''}
+                    ${eachToolData.features[1] ? `<li>${eachToolData.features[1]}</li>` :''}
+                    ${eachToolData.features[2] ? `<li>${eachToolData.features[2]}</li>` :''}
+                    ${eachToolData.features[3] ? `<li>${eachToolData.features[3]}</li>` :''}
+                    ${eachToolData.features[4] ? `<li>${eachToolData.features[4]}</li>` :''}
                     </ol>
                 </div>
                 <hr>
@@ -113,7 +116,7 @@ const displayAllData = (toolsData) => {
   );
   toolsInfoCardContainer.innerText = "";
   toolsData.forEach((eachToolData) => {
-    
+    console.log(eachToolData.features)
 
     // Date Formatting
     const date = new Date(eachToolData.published_in);
@@ -144,9 +147,11 @@ const displayAllData = (toolsData) => {
                   <div>
                       <h1 class="font-semibold text-xl">Features</h1>
                       <ol class="list-decimal pl-5">
-                          <li>${eachToolData.features[0]}</li>
-                          <li>${eachToolData.features[1]}</li>
-                          <li>${eachToolData.features[2]}</li>
+                      ${eachToolData.features[0] ? `<li>${eachToolData.features[0]}</li>` :''}
+                      ${eachToolData.features[1] ? `<li>${eachToolData.features[1]}</li>` :''}
+                      ${eachToolData.features[2] ? `<li>${eachToolData.features[2]}</li>` :''}
+                      ${eachToolData.features[3] ? `<li>${eachToolData.features[3]}</li>` :''}
+                      ${eachToolData.features[4] ? `<li>${eachToolData.features[4]}</li>` :''}
                       </ol>
                   </div>
                   <hr>
@@ -367,7 +372,6 @@ const sortByDate = (direction) => {
     cardContainer.appendChild(card);
   });
 }
-
 
 document.getElementById("sort-by-date-btn").addEventListener("click", function () {
     const sortBtn =  document.getElementById('sort-by-date-btn')
