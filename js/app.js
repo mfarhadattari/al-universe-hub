@@ -2,13 +2,15 @@
     Default 6 Tools Data Card Section
 ----------------------------------------------------*/
 // Load first 6 data
-const load6Data = () => {
+const load6Data = async() => {
   // loader1
   document.getElementById("loader1").classList.remove("hidden");
+
+  // get data from api
   const url = "https://openapi.programming-hero.com/api/ai/tools";
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => display6Data(data.data.tools));
+  const res = await fetch(url) ;
+  const data = await res.json() ;
+  display6Data(data.data.tools) ;
 };
 
 // Display 6 card of tools
@@ -142,13 +144,15 @@ const display6Data = (toolsData) => {
 ------------------------------------------------------------------------------*/
 
 // Load all data when click in see more btn
-const loadAllData = () => {
+const loadAllData = async() => {
   // loader2
   document.getElementById("loader2").classList.remove("hidden");
+
+  // get data form API
   const url = "https://openapi.programming-hero.com/api/ai/tools";
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => displayAllData(data.data.tools));
+  const res = await fetch(url) ;
+  const data = await res.json() ;
+  displayAllData(data.data.tools) ;
 };
 
 // display all data
@@ -275,12 +279,14 @@ const displayAllData = (toolsData) => {
 --------------------------------------------------------------------------------------*/
 
 // details loader
-const loadDetails = (id) => {
+const loadDetails = async(id) => {
+  // modal loader
   document.getElementById("modal-loader").classList.remove("hidden");
-  url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => displayDetails(data.data));
+// get data from API
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  const res = await fetch(url) ;
+  const data = await res.json() ;
+  displayDetails(data.data) ;
 };
 
 // details display
