@@ -13,9 +13,13 @@ const load6Data = () => {
 
 // Display 6 card of tools
 const display6Data = (toolsData) => {
+
+  // card container
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
   );
+
+  // See More Button
   const seeMoreBtn = document.createElement("div");
   seeMoreBtn.classList.add("mt-10");
   seeMoreBtn.innerHTML = `
@@ -23,9 +27,10 @@ const display6Data = (toolsData) => {
                 <button onclick="loadAllData()" id="see-more-btn"
                     class="btn bg-red-400 hover:bg-sky-500 capitalize border-none text-white w-36">See More</button>
   `;
+
+  // create , set and append Card 
   for (const eachToolData of toolsData) {
     if (toolsData.indexOf(eachToolData) < 6) {
-      // console.log(eachToolData.features)
 
       // Date Formatting
       const date = new Date(eachToolData.published_in);
@@ -39,6 +44,7 @@ const display6Data = (toolsData) => {
           ? "" + date.getDate()
           : "0" + date.getDate();
 
+      // create card element
       const toolCard = document.createElement("div");
       toolCard.classList.add(
         "card",
@@ -48,16 +54,22 @@ const display6Data = (toolsData) => {
         "p-5",
         "rounded-3xl"
       );
+
+      // Set Card Element
       toolCard.innerHTML = `
-        <!-- Each tool card -->
+        <!-----------------------------------------
+                   Each tool card 
+                   --------------------------------->
+                   <!-- Card body -->
+                   
             <!-- Tool Image -->
             <figure>
                 <img src="${eachToolData.image}"
                     alt="${eachToolData.name}" style = "height: 200px"  />
             </figure>
-            <div class="card-body">
 
-                <!--Six Card tool features Section -->
+            <div class="card-body">
+                <!-- tool features Section -->
                 <div>
                     <h1 class="font-semibold text-xl">Features</h1>
                     <ol class="list-decimal pl-5">
@@ -90,7 +102,7 @@ const display6Data = (toolsData) => {
                 </div>
                 <hr>
 
-                <!-- footer -->
+                <!-- Card footer -->
                 <div class="flex justify-between items-center">
                     <div>
                         <!-- tool title -->
@@ -103,24 +115,27 @@ const display6Data = (toolsData) => {
                             <span class = "published-date"> ${mouth}/${day}/${year}</span>
                         </h4>
                     </div>
+
                     <!-- tool details btn -->
                     <div class="card-actions justify-end">
-                      
-                        <!-- The details btn -->
-            <label for="my-modal-3" onclick= "loadDetails('${
-              eachToolData.id
-            }')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
+            <label for="my-modal-3" onclick= "loadDetails('${eachToolData.id}')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
                     </div>
                 </div>
             </div>
         `;
+
+        // append card to cardContainer
       toolsInfoCardContainer.appendChild(toolCard);
     }
+
+    // append see more button to parent of card container
     toolsInfoCardContainer.parentNode.appendChild(seeMoreBtn);
   }
   //   loader1
   document.getElementById("loader1").classList.add("hidden");
 };
+
+
 
 /* -------------------------------------------------------------------------
                               See More Data Section
@@ -135,13 +150,18 @@ const loadAllData = () => {
     .then((res) => res.json())
     .then((data) => displayAllData(data.data.tools));
 };
+
+// display all data
 const displayAllData = (toolsData) => {
+
+  // card container
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
   );
   toolsInfoCardContainer.innerText = "";
+
+  // Create , set and append card
   toolsData.forEach((eachToolData) => {
-    console.log(eachToolData.features);
 
     // Date Formatting
     const date = new Date(eachToolData.published_in);
@@ -155,6 +175,7 @@ const displayAllData = (toolsData) => {
         ? "" + date.getDate()
         : "0" + date.getDate();
 
+        // Create Card
     const toolCard = document.createElement("div");
     toolCard.classList.add(
       "card",
@@ -164,16 +185,23 @@ const displayAllData = (toolsData) => {
       "p-5",
       "rounded-3xl"
     );
+
+    // set card Element
     toolCard.innerHTML = `
-          <!-- Each tool card -->
+          <!----------------------------------------------
+                     Each tool card
+                     ----------------------------------------------->
+              <!--Card body -->
+
               <!-- Tool Image -->
               <figure>
                   <img src="${eachToolData.image}"
                       alt="${eachToolData.name}" style = "height: 200px"  />
               </figure>
+
+
               <div class="card-body">
-  
-                  <!-- All card tool features section-->
+                  <!-- tool features section-->
                   <div>
                       <h1 class="font-semibold text-xl">Features</h1>
                       <ol class="list-decimal pl-5">
@@ -206,7 +234,7 @@ const displayAllData = (toolsData) => {
                   </div>
                   <hr>
   
-                  <!-- footer -->
+                  <!--card footer -->
                   <div class="flex justify-between items-center">
                       <div>
                           <!-- tool title -->
@@ -228,12 +256,19 @@ const displayAllData = (toolsData) => {
                   </div>
               </div>
           `;
+
+    // append card to card container
     toolsInfoCardContainer.appendChild(toolCard);
   });
+
+  // hide see more btn
   document.getElementById("see-more-btn").classList.add("hidden");
+
   //   loader2
   document.getElementById("loader2").classList.add("hidden");
 };
+
+
 
 /* ------------------------------------------------------------------------------------
                               Details Modal Section
@@ -252,14 +287,18 @@ const loadDetails = (id) => {
 const displayDetails = (toolData) => {
   const cardBody = document.getElementById("card-body");
   cardBody.innerHTML = "";
+
+  // set details element
   cardBody.innerHTML = `
   <div class="flex  flex-col lg:flex-row justify-between gap-5 p-1">
   <div class="card lg:w-1/2 bg-red-50 shadow-xl p-2 border-2 border-red-300">
+
+   <!--Tool Description-->
       <h1 class="text-2xl font-medium">
           ${toolData.description}
       </h1>
-      <div class="card-body p-1">
 
+      <div class="card-body p-1">
       <!--Tool Pricing Section -->
           <div class="flex flex-col md:flex-row gap-4 text-lg text-center my-3">
               <div class="bg-white p-5 text-green-500 rounded-xl">
@@ -285,7 +324,6 @@ const displayDetails = (toolData) => {
               </div>
           </div>
           <div class="flex gap-5 items-center justify-between">
-
           <!--Details Feature section-->
               <div class="">
                   <h2 class="text-xl font-semibold">Features</h2>
@@ -307,6 +345,8 @@ const displayDetails = (toolData) => {
 
   <div class="card lg:w-1/2 bg-base-100 shadow-xl">
       <div class="w-full">
+
+      <!--Tool accuracy-->
           <span id="accuracy" class=" badge badge-secondary absolute right-5 md:right-52 lg:right-28 top-7 z-10">
               ${
                 typeof toolData.accuracy.score == "number"
@@ -314,12 +354,12 @@ const displayDetails = (toolData) => {
                   : "Accuracy Not Found"
               }
           </span>
+
+          <!---tool picture--->
           <figure class="relative right-2 lg:right-4 top-5 z-0">
-              <img src="${toolData.image_link[0]}" alt="${
-    toolData.tool_name
-  }" class="rounded-xl w-80  h-44" />
+              <img src="${toolData.image_link[0]}" alt="${toolData.tool_name}" class="rounded-xl w-80  h-44" />
           </figure>
-      </div>
+    </div>
 
       <!-- Question and Answer section -->
       <div class="card-body items-center text-center">
@@ -375,6 +415,8 @@ const displayDetails = (toolData) => {
 /* ------------------------------------------------------------------------------------
                               Sort by date section
 --------------------------------------------------------------------------------------*/
+
+// convert date in number function
 const convertDate = (date) => {
   let dateArray = date.split("/");
   dateArray = dateArray.reverse();
@@ -385,6 +427,8 @@ const convertDate = (date) => {
   return dateYMD;
 };
 
+
+// sorting by date function
 const sortByDate = (direction) => {
   // card container
   const cardContainer = document.getElementById("tools-information-container");
@@ -405,12 +449,13 @@ const sortByDate = (direction) => {
     });
   }
   dateList.forEach((dateContainer) => {
-    const card =
-      dateContainer.parentNode.parentNode.parentNode.parentNode.parentNode;
+    const card = dateContainer.parentNode.parentNode.parentNode.parentNode.parentNode;
     cardContainer.appendChild(card);
   });
 };
 
+
+// sort by date btn
 document
   .getElementById("sort-by-date-btn")
   .addEventListener("click", function () {

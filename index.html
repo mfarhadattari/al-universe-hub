@@ -18,16 +18,22 @@
 
 <body onload="load6Data()">
 
-    <!-- Header Section -->
+    <!-------------------------------------------------------
+         Header Section
+        ---------------------------------------------------------- -->
     <header>
         <section class="container mx-auto mt-10 flex flex-col gap-5">
             <h1 class="text-5xl font-semibold text-center">AI Universe Hub</h1>
+            <!-- Sorting Button -->
             <button id="sort-by-date-btn" class="btn bg-red-400 hover:bg-sky-500 capitalize border-none text-white mx-auto">Sort By Date (Descending)</button>
         </section>
     </header>
+
     <main>
         <section>
-            <!-- loader1 -->
+            <!---------------------------------------------------------
+                                         loader1
+                ---------------------------------------------------->
             <div id="loader1" class="text-center hidden my-5">
                 <svg aria-hidden="true"
                     class="inline w-20 h-20 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -42,11 +48,16 @@
             </div>
         </section>
 
-        <!-- tools information section -->
+        <!---------------------------------------------------------------
+             tools information section 
+            ---------------------------------------------------------------->
         <section class="mx-auto my-10 flex flex-col items-center">
+
+            <!-- Card Container Start-->
             <div id="tools-information-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
             </div>
+            <!-- Card Container End-->
 
             <!-- loader 2-->
             <div id="loader2" class="text-center hidden my-5">
@@ -61,19 +72,29 @@
                         fill="currentFill" />
                 </svg>
             </div>
+
         </section>
 
 
-        <!-- Modal Section -->
+        <!---------------------------------------------------------------------------
+             Details Modal Section 
+            ---------------------------------------------------------------------------->
         <section>
+            <!----------------------------------------------------------
+                 Details Modal 
+            ------------------------------------------------------>
             <div id="details-modal">
-                <!-- Details Modal -->
                 <input type="checkbox" id="my-modal-3" class="modal-toggle" />
                 <div class="modal">
+                    <!-- Modal Close Button Start-->
                     <label for="my-modal-3" class="btn btn-circle bg-red-500  z-20 absolute right-2 top-8 md:top-28 md:right-5 lg:right-20 lg:top-7">✕</label>
+                    <!-- Modal Close Button End -->
 
+                    <!-----------------------------------------
+                        Full Modal Start
+                        --------------------------------------->
                     <div class="modal-box w-11/12 max-w-5xl z-0 p-2 absolute top-10 right-5 md:right-10 md:top-32 lg:right-24 lg:top-12">
-                        <!-- modal-loader -->
+                        <!-- modal-loader Start -->
                         <div id="modal-loader" class="text-center hidden my-5">
                             <svg aria-hidden="true"
                                 class="inline w-20 h-20 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -86,9 +107,12 @@
                                     fill="currentFill" />
                             </svg>
                         </div>
-                        <div id="card-body" class="p-1">
-                            
+                        <!-- modal-loader End -->
+
+                        <!-- Modal Content Body Start -->
+                        <div id="card-body" class="p-1">       
                         </div>
+                        <!-- Modal Content Body End -->
                     </div>
                 </div>
             </div>
