@@ -266,21 +266,21 @@ const displayDetails = (toolData) => {
                ${
                  Array.isArray(toolData.pricing)
                    ? `${toolData.pricing[0].price} ${toolData.pricing[0].plan}`
-                   : "Not Pricing Data Found"
+                   : "Free of Cost /Basic"
                }
               </div>
               <div class="bg-white p-5 text-orange-500 rounded-xl">
               ${
                 Array.isArray(toolData.pricing)
                   ? `${toolData.pricing[1].price} ${toolData.pricing[1].plan}`
-                  : "Not Pricing Data Found"
+                  : "Free of Cost  /Pro"
               }
               </div>
               <div class="bg-white p-5 text-pink-500 rounded-xl">
               ${
                 Array.isArray(toolData.pricing)
                   ? `${toolData.pricing[2].price} ${toolData.pricing[2].plan}`
-                  : "Not Pricing Data Found"
+                  : "Free of Cost /Enterprise"
               }
               </div>
           </div>
