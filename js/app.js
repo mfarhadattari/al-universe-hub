@@ -16,23 +16,28 @@ const display6Data = (toolsData) => {
   const toolsInfoCardContainer = document.getElementById(
     "tools-information-container"
   );
-  const seeMoreBtn = document.createElement('div') ;
-  seeMoreBtn.classList.add('mt-10')
+  const seeMoreBtn = document.createElement("div");
+  seeMoreBtn.classList.add("mt-10");
   seeMoreBtn.innerHTML = `
   <!-- more btn -->
                 <button onclick="loadAllData()" id="see-more-btn"
                     class="btn bg-red-400 hover:bg-sky-500 capitalize border-none text-white w-36">See More</button>
-  `
+  `;
   for (const eachToolData of toolsData) {
     if (toolsData.indexOf(eachToolData) < 6) {
       // console.log(eachToolData.features)
 
       // Date Formatting
       const date = new Date(eachToolData.published_in);
-      const year = '' + date.getFullYear();
-      const mouth = (('' + (date.getMonth() + 1)).length == 2) ? ('' + (date.getMonth() + 1)) : ('0' + (date.getMonth() + 1));
-      const day = (('' + date.getDate()).length == 2) ? ('' + date.getDate()) : ('0' + date.getDate());
-
+      const year = "" + date.getFullYear();
+      const mouth =
+        ("" + (date.getMonth() + 1)).length == 2
+          ? "" + (date.getMonth() + 1)
+          : "0" + (date.getMonth() + 1);
+      const day =
+        ("" + date.getDate()).length == 2
+          ? "" + date.getDate()
+          : "0" + date.getDate();
 
       const toolCard = document.createElement("div");
       toolCard.classList.add(
@@ -56,11 +61,31 @@ const display6Data = (toolsData) => {
                 <div>
                     <h1 class="font-semibold text-xl">Features</h1>
                     <ol class="list-decimal pl-5">
-                    ${eachToolData.features[0] ? `<li>${eachToolData.features[0]}</li>` :''}
-                    ${eachToolData.features[1] ? `<li>${eachToolData.features[1]}</li>` :''}
-                    ${eachToolData.features[2] ? `<li>${eachToolData.features[2]}</li>` :''}
-                    ${eachToolData.features[3] ? `<li>${eachToolData.features[3]}</li>` :''}
-                    ${eachToolData.features[4] ? `<li>${eachToolData.features[4]}</li>` :''}
+                    ${
+                      eachToolData.features[0]
+                        ? `<li>${eachToolData.features[0]}</li>`
+                        : ""
+                    }
+                    ${
+                      eachToolData.features[1]
+                        ? `<li>${eachToolData.features[1]}</li>`
+                        : ""
+                    }
+                    ${
+                      eachToolData.features[2]
+                        ? `<li>${eachToolData.features[2]}</li>`
+                        : ""
+                    }
+                    ${
+                      eachToolData.features[3]
+                        ? `<li>${eachToolData.features[3]}</li>`
+                        : ""
+                    }
+                    ${
+                      eachToolData.features[4]
+                        ? `<li>${eachToolData.features[4]}</li>`
+                        : ""
+                    }
                     </ol>
                 </div>
                 <hr>
@@ -82,20 +107,20 @@ const display6Data = (toolsData) => {
                     <div class="card-actions justify-end">
                       
                         <!-- The details btn -->
-            <label for="my-modal-3" onclick= "loadDetails('${eachToolData.id}')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
+            <label for="my-modal-3" onclick= "loadDetails('${
+              eachToolData.id
+            }')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
                     </div>
                 </div>
             </div>
         `;
-        toolsInfoCardContainer.appendChild(toolCard);
-      }
-      toolsInfoCardContainer.parentNode.appendChild(seeMoreBtn);
+      toolsInfoCardContainer.appendChild(toolCard);
     }
+    toolsInfoCardContainer.parentNode.appendChild(seeMoreBtn);
+  }
   //   loader1
   document.getElementById("loader1").classList.add("hidden");
 };
-
-
 
 /* -------------------------------------------------------------------------
                               See More Data Section
@@ -116,14 +141,19 @@ const displayAllData = (toolsData) => {
   );
   toolsInfoCardContainer.innerText = "";
   toolsData.forEach((eachToolData) => {
-    console.log(eachToolData.features)
+    console.log(eachToolData.features);
 
     // Date Formatting
     const date = new Date(eachToolData.published_in);
-    const year = '' + date.getFullYear();
-    const mouth = (('' + (date.getMonth() + 1)).length == 2) ? ('' + (date.getMonth() + 1)) : ('0' + (date.getMonth() + 1));
-    const day = (('' + date.getDate()).length == 2) ? ('' + date.getDate()) : ('0' + date.getDate());
-
+    const year = "" + date.getFullYear();
+    const mouth =
+      ("" + (date.getMonth() + 1)).length == 2
+        ? "" + (date.getMonth() + 1)
+        : "0" + (date.getMonth() + 1);
+    const day =
+      ("" + date.getDate()).length == 2
+        ? "" + date.getDate()
+        : "0" + date.getDate();
 
     const toolCard = document.createElement("div");
     toolCard.classList.add(
@@ -147,11 +177,31 @@ const displayAllData = (toolsData) => {
                   <div>
                       <h1 class="font-semibold text-xl">Features</h1>
                       <ol class="list-decimal pl-5">
-                      ${eachToolData.features[0] ? `<li>${eachToolData.features[0]}</li>` :''}
-                      ${eachToolData.features[1] ? `<li>${eachToolData.features[1]}</li>` :''}
-                      ${eachToolData.features[2] ? `<li>${eachToolData.features[2]}</li>` :''}
-                      ${eachToolData.features[3] ? `<li>${eachToolData.features[3]}</li>` :''}
-                      ${eachToolData.features[4] ? `<li>${eachToolData.features[4]}</li>` :''}
+                      ${
+                        eachToolData.features[0]
+                          ? `<li>${eachToolData.features[0]}</li>`
+                          : ""
+                      }
+                      ${
+                        eachToolData.features[1]
+                          ? `<li>${eachToolData.features[1]}</li>`
+                          : ""
+                      }
+                      ${
+                        eachToolData.features[2]
+                          ? `<li>${eachToolData.features[2]}</li>`
+                          : ""
+                      }
+                      ${
+                        eachToolData.features[3]
+                          ? `<li>${eachToolData.features[3]}</li>`
+                          : ""
+                      }
+                      ${
+                        eachToolData.features[4]
+                          ? `<li>${eachToolData.features[4]}</li>`
+                          : ""
+                      }
                       </ol>
                   </div>
                   <hr>
@@ -171,7 +221,9 @@ const displayAllData = (toolsData) => {
                       </div>
                       <div class="card-actions justify-end">
                       <!-- tool details btn -->
-                      <label for="my-modal-3" onclick= "loadDetails('${eachToolData.id}')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
+                      <label for="my-modal-3" onclick= "loadDetails('${
+                        eachToolData.id
+                      }')" class="btn bg-red-50 border-none text-red-400 text-2xl rounded-full"><i class="fa-solid fa-arrow-right"></i></label>
                       </div>
                   </div>
               </div>
@@ -269,17 +321,17 @@ const displayDetails = (toolData) => {
           </figure>
       </div>
 
-      <!-- Title and Description section -->
+      <!-- Question and Answer section -->
       <div class="card-body items-center text-center">
-          <h2 id="question" class="card-title">${
+          <h2  class="card-title">${
             Array.isArray(toolData.input_output_examples)
               ? toolData.input_output_examples[0].input
-              : "No Data Found"
+              : "Can you give any example?"
           }</h2>
-          <p id="answer">${
+          <p>${
             Array.isArray(toolData.input_output_examples)
               ? toolData.input_output_examples[0].output
-              : "No Data Found"
+              : "No! Not Yet! Take a break!!!"
           }</p>
       </div>
   </div>
@@ -298,7 +350,7 @@ const displayDetails = (toolData) => {
   } else {
     integrationsList.innerText = "No Data Found";
   }
-  
+
   // Details section features section
   const featuresList = document.getElementById("details-features-list");
   const features = toolData.features;
@@ -308,31 +360,17 @@ const displayDetails = (toolData) => {
     featuresList.appendChild(featuresLi);
   }
 
-
-  // accuracyData 
-  const accuracyDataCon = document.getElementById('accuracy') ;
-  if(accuracyDataCon.innerText === 'Accuracy Not Found'){
-    accuracyDataCon.classList.add('hidden') ;
+  // accuracyData
+  const accuracyDataCon = document.getElementById("accuracy");
+  if (accuracyDataCon.innerText === "Accuracy Not Found") {
+    accuracyDataCon.classList.add("hidden");
+  } else {
+    accuracyDataCon.classList.remove("hidden");
   }
-  else{
-    accuracyDataCon.classList.remove('hidden') ;
-  }
-
-  // 
-  const questionCon = document.getElementById('question') ;
-  const answerCon = document.getElementById('answer') ;
-  if (questionCon.innerText === 'No Data Found' && answerCon.innerText === 'No Data Found'){
-    answerCon.classList.add('hidden') ;
-  }
-  else{
-    questionCon.classList.remove('hidden') ;
-  }
-  
 
   // modal-loader hide
   document.getElementById("modal-loader").classList.add("hidden");
 };
-
 
 /* ------------------------------------------------------------------------------------
                               Sort by date section
@@ -340,48 +378,49 @@ const displayDetails = (toolData) => {
 const convertDate = (date) => {
   let dateArray = date.split("/");
   dateArray = dateArray.reverse();
-  let dateYMD = '' ;
-  dateArray.forEach(dateElement =>{
-    dateYMD = dateYMD + dateElement ;
-  })
-  return dateYMD ;
-}
+  let dateYMD = "";
+  dateArray.forEach((dateElement) => {
+    dateYMD = dateYMD + dateElement;
+  });
+  return dateYMD;
+};
 
 const sortByDate = (direction) => {
   // card container
-  const cardContainer = document.getElementById('tools-information-container');
-  
+  const cardContainer = document.getElementById("tools-information-container");
+
   // cards list
-  const allDateList = document.getElementsByClassName('published-date') ;
+  const allDateList = document.getElementsByClassName("published-date");
   const dateList = [].slice.call(allDateList);
 
-  if(direction === 'descending'){  
-    dateList.sort((a , b) =>{
-      const def = convertDate(b.innerText) - convertDate(a.innerText) ;
+  if (direction === "descending") {
+    dateList.sort((a, b) => {
+      const def = convertDate(b.innerText) - convertDate(a.innerText);
       return def;
-      });  
-  }
-  else{
-    dateList.sort((a , b) =>{
-      const def = convertDate(a.innerText) - convertDate(b.innerText) ;
+    });
+  } else {
+    dateList.sort((a, b) => {
+      const def = convertDate(a.innerText) - convertDate(b.innerText);
       return def;
-      }); 
+    });
   }
-    dateList.forEach( dateContainer => {
-    const card =dateContainer.parentNode.parentNode.parentNode.parentNode.parentNode
+  dateList.forEach((dateContainer) => {
+    const card =
+      dateContainer.parentNode.parentNode.parentNode.parentNode.parentNode;
     cardContainer.appendChild(card);
   });
-}
+};
 
-document.getElementById("sort-by-date-btn").addEventListener("click", function () {
-    const sortBtn =  document.getElementById('sort-by-date-btn')
-    const sortBtnText = sortBtn.innerText ;
-    if(sortBtnText == 'Sort By Date (Descending)'){
-      sortBtn.innerText = 'Sort By Date (Ascending)'
-      sortByDate('descending'); 
-    }
-    else{
-      sortBtn.innerText = 'Sort By Date (Descending)'
-      sortByDate('ascending'); 
+document
+  .getElementById("sort-by-date-btn")
+  .addEventListener("click", function () {
+    const sortBtn = document.getElementById("sort-by-date-btn");
+    const sortBtnText = sortBtn.innerText;
+    if (sortBtnText == "Sort By Date (Descending)") {
+      sortBtn.innerText = "Sort By Date (Ascending)";
+      sortByDate("descending");
+    } else {
+      sortBtn.innerText = "Sort By Date (Descending)";
+      sortByDate("ascending");
     }
   });
